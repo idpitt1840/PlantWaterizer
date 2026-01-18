@@ -22,6 +22,12 @@ The project case is generated from the follow parametric OpenSCAD project: https
 
 ( Yes, I know the Float and Water sensor labels don't match  the connectors ).  This unit is currently driving 4 zones. 
 
+Assembled unit: 
+
+<img width="549" height="976" alt="image" src="https://github.com/user-attachments/assets/f6c17722-7621-4bf2-8c3c-1152e0862de1" />
+
+Plenty of hot glue to keep those connectors under control. The aviation plugs should be fine if tightened up sufficiently. The USB sockets were a little wobbly so they need the glue treatment.  The wires from the LEDs and connectors are soldered directly to the header pins which isn't great and makes for fiddly assembly. I really couldn't be bothered with creating the dupont connectors enmass.   The moisture sensor inputs require 3v3, input and ground connectivity. The onboard 3v3 regulator on the ESP32 devkit board has enough capacity for these.   The pumps are fed from 5V via the MOSFETs.  Are MOSFETS overkill? Probably but they work and I had them and there's zero heat given off due to the low voltages, currents and the fact they're not rapidly switching on and off plus if I choose to upgrade the pumps to high current units, I won't need to change the design. A common NPN transistor might do the job. 
+
 While this design uses HomeAssistant for status reporting and dashboarding,  it will run standalone once flashed since the logic controlling the moisture is in the ESP32.  You'll need to set the timeouts on the network and Home Assistant API to 0 in the code if you wish to run standalone.
 I use Home Assistant for emailing me when the water is low and manual control of the pumps, and the dashboarding of course.   HA also controls the grow lights, though as a simple timer. 
 
