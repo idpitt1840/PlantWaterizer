@@ -8,11 +8,11 @@ This unit monitors the moisture content of up to 5 plant pots and delivers water
 
 <img width="1734" height="976" alt="image" src="https://github.com/user-attachments/assets/b612c39a-7bfa-42a2-b82a-88a61819572b" />
 
-The pots are fed via a 3D printed water distribution ring ( STLs available from https://www.printables.com/model/103003-drip-irrigation-ring ) 
+The pots are fed via a 3D printed water distribution ring ( STLs available from https://www.printables.com/model/103003-drip-irrigation-ring ). I modified the design a little to take a bigger hose.
 
 <img width="1734" height="976" alt="image" src="https://github.com/user-attachments/assets/53b1d9de-0f58-4fbb-9837-d463f7509223" />
 
-The pumps are held in a 5 gallon bucket, lid cutout is to prevent the cats from trying to get a drink and knocking the whole thing over.  The hoses are held in place with 3D printed mounts, STL at https://www.thingiverse.com/thing:5642735/files
+The pumps are held in a 5 gallon bucket, lid cutout is to prevent the cats from trying to get a drink and knocking the whole thing over.  The hoses are held in place with 3D printed mounts, STL at https://www.thingiverse.com/thing:5642735/files. The pumps are held at the bottom of the bucket simply by the friction of the hose clamps and the hose itself. I did create a 3D printed mount for all of this then decided not to stick more microplastics into the mix. 
 
 Soil sensors are enclosed in a 3D printed housing, STL at: https://www.printables.com/model/247398-capacitive-soil-moisture-sensor-v20-cover
 
