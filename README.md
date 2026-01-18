@@ -20,7 +20,7 @@ The project case is generated from the follow parametric OpenSCAD project: https
 
 <img width="1734" height="976" alt="image" src="https://github.com/user-attachments/assets/aaf9fb6e-4158-460a-9fde-1bdf01c7b3d8" />
 
-( Yes, I know the Float and Water sensor labels don't match  the connectors ).  This unit is currently driving 4 zones. 
+( Yes, I know the Float and Water sensor labels don't match  the connectors ).  This unit is currently driving 4 zones.  I've included a 3MF 3d print project file for the labelled lid if you have  Prusa MMU unit for doing mulitple colors. 
 
 Assembled unit: 
 
