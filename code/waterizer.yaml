@@ -1,0 +1,455 @@
+esphome:
+  name: plantwaterinator
+  friendly_name: PlantWaterinator
+  platformio_options:
+     build_flags: "-DBOARD_HAS_PSRAM"
+     board_build.flash_mode: dio
+  on_boot:
+     priority: -100
+     then:
+       - switch.turn_on: led3
+
+esp32:
+  board: esp32-s3-devkitc-1
+  cpu_frequency: 240MHz
+  framework:
+    type: esp-idf
+
+# Enable logging
+logger:
+  level: debug
+  baud_rate: 0
+debug:
+  update_interval: 15s
+
+psram:
+  speed: 80MHz
+  mode: quad
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: "[YOUR KEY]"
+
+ota:
+  - platform: esphome
+    password: "[OTA KEY]"
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  min_auth_mode: WPA2
+
+# Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Plantwaterinator"
+    password: "[AP Password]"
+
+captive_portal:
+
+#web_server:
+#  port: 80
+#  auth:
+#    username: !secret web_server_username
+#    password: !secret web_server_password
+
+globals:
+  - id: zone1_needs_water
+    type: bool
+    initial_value: 'false'
+  - id: zone2_needs_water
+    type: bool
+    initial_value: 'false'
+  - id: zone3_needs_water
+    type: bool
+    initial_value: 'false'
+  - id: zone4_needs_water
+    type: bool
+    initial_value: 'false'
+  - id: zone5_needs_water
+    type: bool
+    initial_value: 'false'
+
+sensor:
+  - platform: adc
+    pin: GPIO04
+    name: "Sensor 1"
+    update_interval: 600s
+    samples: 10    
+    id: "Sensor1"
+    attenuation: 12db
+    unit_of_measurement: "%"
+    device_class: humidity
+    icon: "mdi:watering-can"
+    filters:
+      - calibrate_linear:
+          - 2.75 -> 0
+          - 1.022 -> 100
+      - lambda: |
+          if (x < 0) return 0;
+          if (x > 100) return 100;
+          return x;
+    on_value:
+      then:
+        - lambda: |
+            // Hysteresis Logic
+            if (id(Sensor1).state < 60.0) {
+              id(zone1_needs_water) = true;
+            }
+            if (id(Sensor1).state > 70.0) {
+              id(zone1_needs_water) = false;
+            }
+
+        - if:
+            condition:
+              lambda: 'return id(zone1_needs_water);'
+            then:
+              - script.execute: water_zone_1
+
+  - platform: adc
+    pin: GPIO05
+    name: "Sensor 2"
+    update_interval: 600s    
+    samples: 10
+    id: "Sensor2"
+    attenuation: 12db
+    unit_of_measurement: "%"
+    device_class: humidity
+    icon: "mdi:watering-can"
+    filters:
+      - calibrate_linear:
+          - 2.75 -> 0
+          - 1.022 -> 100
+      - lambda: |
+          if (x < 0) return 0;
+          if (x > 100) return 100;
+          return x;
+    on_value:
+      then:
+        - lambda: |
+            // Hysteresis Logic
+            if (id(Sensor2).state < 60.0) {
+              id(zone2_needs_water) = true;
+            }
+            if (id(Sensor2).state > 70.0) {
+              id(zone2_needs_water) = false;
+            }
+
+        - if:
+            condition:
+              lambda: 'return id(zone2_needs_water);'
+            then:
+              - script.execute: water_zone_2
+
+
+  - platform: adc
+    pin: GPIO06
+    name: "Sensor 3"
+    update_interval: 600s    
+    samples: 10
+    id: "Sensor3"
+    attenuation: 12db
+    unit_of_measurement: "%"
+    device_class: humidity
+    icon: "mdi:watering-can"
+    filters:
+      - calibrate_linear:
+          - 2.75 -> 0
+          - 1.022 -> 100
+      - lambda: |
+          if (x < 0) return 0;
+          if (x > 100) return 100;
+          return x;
+    on_value:
+      then:
+        - lambda: |
+            // Hysteresis Logic
+            if (id(Sensor3).state < 60.0) {
+              id(zone3_needs_water) = true;
+            }
+            if (id(Sensor3).state > 70.0) {
+              id(zone3_needs_water) = false;
+            }
+
+        - if:
+            condition:
+              lambda: 'return id(zone3_needs_water);'
+            then:
+              - script.execute: water_zone_3
+
+  - platform: adc
+    pin: GPIO07
+    name: "Sensor 4"
+    update_interval: 600s    
+    samples: 10
+    id: "Sensor4"
+    attenuation: 12db
+    unit_of_measurement: "%"
+    device_class: humidity
+    icon: "mdi:watering-can"
+    filters:
+      - calibrate_linear:
+          - 2.75 -> 0
+          - 1.022 -> 100
+      - lambda: |
+          if (x < 0) return 0;
+          if (x > 100) return 100;
+          return x;
+    on_value:
+      then:
+        - lambda: |
+            // Hysteresis Logic
+            if (id(Sensor4).state < 60.0) {
+              id(zone4_needs_water) = true;
+            }
+            if (id(Sensor4).state > 70.0) {
+              id(zone4_needs_water) = false;
+            }
+
+        - if:
+            condition:
+              lambda: 'return id(zone4_needs_water);'
+            then:
+              - script.execute: water_zone_4
+
+  - platform: adc
+    pin: GPIO15
+    name: "Sensor 5"
+    update_interval: 600s    
+    samples: 10
+    id: "Sensor5"
+    attenuation: 12db
+    unit_of_measurement: "%"
+    device_class: humidity
+    icon: "mdi:watering-can"
+    filters:
+      - calibrate_linear:
+          - 2.75 -> 0
+          - 1.022 -> 100
+      - lambda: |
+          if (x < 0) return 0;
+          if (x > 100) return 100;
+          return x;
+    on_value:
+      then:
+        - lambda: |
+            // Hysteresis Logic
+            if (id(Sensor5).state < 60.0) {
+              id(zone5_needs_water) = true;
+            }
+            if (id(Sensor5).state > 70.0) {
+              id(zone5_needs_water) = false;
+            }
+
+        - if:
+            condition:
+              lambda: 'return id(zone5_needs_water);'
+            then:
+              - script.execute: water_zone_5
+
+  - platform: debug
+    free:
+      name: "Heap Free"
+    loop_time:
+      name: "Loop Time"
+    cpu_frequency: 
+      name: "CPU Frequency"
+  - platform: wifi_signal
+    name: wifi_signal
+    id: wifistrength
+    update_interval: 600s
+  - platform: uptime
+    name: Plant Waterinator Uptime Sensor
+    id: uptimeinfo
+
+text_sensor:
+  - platform: debug
+    device:
+      name: "Device Info"
+    reset_reason:
+      name: "Reset Reason"
+
+switch:
+  - platform: gpio
+    name: Pump1
+    pin:
+      number: 36
+      inverted: false
+      mode: output
+    id: pump1
+
+
+  - platform: gpio
+    name: Pump2
+    pin:
+      number: 37
+      inverted: false
+      mode: output
+    id: pump2
+
+
+  - platform: gpio
+    name: Pump3
+    pin:
+      number: 38
+      inverted: false
+      mode: output
+    id: pump3
+
+
+  - platform: gpio
+    name: Pump4
+    pin:
+      number: 41
+      inverted: false
+      mode: output
+    id: pump4
+
+
+  - platform: gpio
+    name: Pump5
+    pin:
+      number: 42
+      inverted: false
+      mode: output
+    id: pump5
+
+
+  - platform: gpio
+    name: LED1
+    pin:
+      number: 12
+      inverted: false
+      mode: output
+    id: led1
+
+  - platform: gpio
+    name: LED2
+    pin:
+      number: 13
+      inverted: false
+      mode: output
+    id: led2
+
+  - platform: gpio
+    name: LED3
+    pin:
+      number: 14
+      inverted: false
+      mode: output
+    id: led3
+
+# float switch to disable pump.  Should turn off before the pumps get exposed.
+binary_sensor:
+
+  - platform: gpio
+    pin: 
+      number: GPIO40
+
+      mode:
+
+        input: true
+        pullup: true
+    name: float_switch
+    id: float_switch
+    filters:
+      # This is the magic fix:
+      # The sensor must report "Empty" (OFF) for at least 
+      # 500 milliseconds (half a second) before ESPHome accepts it.
+      # Short noise spikes will be ignored.
+      - delayed_off: 500ms
+    on_release:
+
+      then:
+        - switch.turn_off: pump1
+        - switch.turn_off: pump2
+        - switch.turn_off: pump3
+        - switch.turn_off: pump4
+        - switch.turn_off: pump5
+        - switch.turn_on: led1  # Turn on LED1 to indicate pumps are disabled
+    on_press:
+      then:
+        - switch.turn_off: led1  # Turn off LED1 to indicate pumps are enabled
+
+
+  - platform: template
+    id: any_pump_running
+    # Returns true if Pump 1 OR Pump 2 OR ... is on
+    lambda: |-
+      return id(pump1).state || id(pump2).state || id(pump3).state || id(pump4).state || id(pump5).state; 
+     
+      
+    # When this logic becomes TRUE, turn on LED
+    on_press:
+      - switch.turn_on: led2
+    # When this logic becomes FALSE (all pumps off), turn off LED
+    on_release:
+      - switch.turn_off: led2
+
+
+script:
+  - id: water_zone_1
+    then:
+      - if:
+          condition:
+            binary_sensor.is_on: float_switch
+          then:
+            - logger.log: "Zone 1 Needs Water! Pumping..."
+            - switch.turn_on: pump1
+            - delay: 30s
+# The bay tree gets a longer cycle due to the flow reduction caused by it's height.  
+            - switch.turn_off: pump1
+          else:
+            - logger.log: "Tank is empty! Pumps Disabled. Skipping watering for Zone 1"
+
+  - id: water_zone_2
+    then:
+      - if:
+          condition:
+            binary_sensor.is_on: float_switch
+          then:
+            - logger.log: "Zone 2 Needs Water! Pumping..."
+            - switch.turn_on: pump2
+            - delay: 5s 
+            - switch.turn_off: pump2
+          else:
+            - logger.log: "Tank is empty! Pumps Disabled. Skipping watering for Zone 2" 
+
+  - id: water_zone_3
+    then:
+      - if:
+          condition:
+            binary_sensor.is_on: float_switch
+          then:
+            - logger.log: "Zone 3 Needs Water! Pumping..."
+            - switch.turn_on: pump3
+            - delay: 5s 
+            - switch.turn_off: pump3
+          else:
+            - logger.log: "Tank is empty! Pumps Disabled. Skipping watering for Zone 3"
+
+  - id: water_zone_4
+    then:
+      - if:
+          condition:
+            binary_sensor.is_on: float_switch
+          then: 
+            - logger.log: "Zone 4 Needs Water! Pumping..."
+            - switch.turn_on: pump4
+            - delay: 5s 
+            - switch.turn_off: pump4
+          else:
+            - logger.log: "Tank is empty! Pumps Disabled. Skipping watering for Zone 4" 
+
+  - id: water_zone_5
+    then:
+      - if:
+          condition:
+            binary_sensor.is_on: float_switch
+          then: 
+            - logger.log: "Zone 5 Needs Water! Pumping..."
+            - switch.turn_on: pump5
+            - delay: 5s 
+            - switch.turn_off: pump5      
+          else:
+              - logger.log: "Tank is empty! Pumps Disabled. Skipping watering for Zone 5"
