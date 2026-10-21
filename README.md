@@ -45,3 +45,6 @@ The board layout was done in KiCad.  I used Gemini to create some python to gene
 Enjoy
 
 Version 2: I redesigned the circuit, added some power management features and flyback/esd protection.  The PCB was sized to fit into the existing case and make connectivity far easier. JST heads are now used for all low power offboard connectors and screw terminals for the output stages.  The board is also designed to support higher voltage/current devices such as solenoids instead of pumps though the choice is yours. I use one board in side for the seedlings and power that with 5V and outside for vegetable beds using 12V solenoids. 
+
+<img width="2245" height="1264" alt="image" src="https://github.com/user-attachments/assets/75617dc8-3f2c-4354-9b68-eb1ac0f46537" />
+
