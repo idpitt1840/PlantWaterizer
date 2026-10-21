@@ -1,1 +1,28 @@
 
+"Id";"Designator";"Footprint";"Quantity";"Designation";"Supplier and ref";
+1;"D1, D9, D10, D11, D12";"D_DO-41_SOD81_P2.54mm_Vertical_AnodeUp";5;"1N4001";;;
+2;"J1";"TerminalBlock_Phoenix_MPT-0,5-2-2.54_1x02_P2.54mm_Horizontal";1;"Connector Zone 1 output";;;
+3;"J2";"JST_XH_B3B-XH-AM_1x03_P2.50mm_Vertical";1;"Connector Zone 1 input";;;
+4;"J3";"JST_XH_B3B-XH-AM_1x03_P2.50mm_Vertical";1;"Connector Zone 2 input";;;
+5;"J4";"TerminalBlock_Phoenix_MPT-0,5-2-2.54_1x02_P2.54mm_Horizontal";1;"Connector Zone 2 output";;;
+6;"J5";"TerminalBlock_Phoenix_MPT-0,5-2-2.54_1x02_P2.54mm_Horizontal";1;"Connector Zone 3 output";;;
+7;"J6";"TerminalBlock_Phoenix_MPT-0,5-2-2.54_1x02_P2.54mm_Horizontal";1;"Connector Zone 5 output";;;
+8;"J7";"TerminalBlock_Phoenix_MPT-0,5-2-2.54_1x02_P2.54mm_Horizontal";1;"Connector Zone 4 output";;;
+9;"J8";"JST_XH_B3B-XH-AM_1x03_P2.50mm_Vertical";1;"Connector Zone 3 input";;;
+10;"J9";"JST_XH_B3B-XH-AM_1x03_P2.50mm_Vertical";1;"Connector Zone 4 input";;;
+11;"J10";"JST_XH_B3B-XH-AM_1x03_P2.50mm_Vertical";1;"Connector Zone 5 input";;;
+12;"J11";"TerminalBlock_Phoenix_MPT-0,5-2-2.54_1x02_P2.54mm_Horizontal";1;"Battery In";;;
+13;"J12";"TerminalBlock_Phoenix_MPT-0,5-2-2.54_1x02_P2.54mm_Horizontal";1;"Power Switch";;;
+14;"J13";"PinHeader_1x04_P2.54mm_Vertical";1;"i2c-1";;;
+15;"J14";"PinHeader_1x04_P2.54mm_Vertical";1;"i2c-2";;;
+16;"J15";"PinHeader_1x04_P2.54mm_Vertical";1;"Conn_01x04_Pin";;;
+17;"J16";"JST_XH_B3B-XH-AM_1x03_P2.50mm_Vertical";1;"Float/Aux";;;
+18;"J17";"JST_XH_B4B-XH-AM_1x04_P2.50mm_Vertical";1;"Conn_01x04_Pin";;;
+19;"J113v3";"PinHeader_1x04_P2.54mm_Vertical";1;"Power Connections";;;
+20;"Q1";"SOT-223-3_TabPin2";1;"NTF6P02T3GOSCT-ND‎";;;
+21;"Q5, Q7, Q8, Q9, Q10";"SOT-223-3_TabPin2";5;"NTF6P02T3G";;;
+22;"R1, R2, R5";"R_Axial_DIN0207_L6.3mm_D2.5mm_P2.54mm_Vertical";3;"330R";;;
+23;"R3, R4, R9, R17, R19, R21, R23";"R_Axial_DIN0207_L6.3mm_D2.5mm_P2.54mm_Vertical";7;"10k";;;
+24;"R6, R7, R8, R16, R18, R20, R22";"R_Axial_DIN0207_L6.3mm_D2.5mm_P2.54mm_Vertical";7;"100";;;
+25;"U1";"ESP32-DevKitC";1;"ESP32-DevKitC";;;
+26;"U2";"PinHeader_1x08_P2.54mm_Vertical";1;"INA226";;;
