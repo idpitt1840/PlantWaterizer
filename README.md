@@ -48,3 +48,12 @@ Version 2: I redesigned the circuit, added some power management features and fl
 
 <img width="2245" height="1264" alt="image" src="https://github.com/user-attachments/assets/75617dc8-3f2c-4354-9b68-eb1ac0f46537" />
 
+I took the oppty to lower the costs of the aviation connectors and moved to RJ11: 
+
+<img width="2168" height="1221" alt="image" src="https://github.com/user-attachments/assets/757e93f5-6d84-404a-8507-f5770e0b634c" />
+
+And cleaned up the inside considerably: 
+
+<img width="699" height="1242" alt="image" src="https://github.com/user-attachments/assets/33e786f2-c4f7-40aa-9eb1-5c4d5b07cc9f" />
+
+
